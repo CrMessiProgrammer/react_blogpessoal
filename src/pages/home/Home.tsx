@@ -14,12 +14,15 @@ function Home() {
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
+                        background: '#0d0c1d',
+                        color: '#FFFFFF',
+                        borderBottomLeftRadius: '20px',
+                        borderBottomRightRadius: '20px',
                     }}
                 >
-                    <h2>Seja Bem Vinde!</h2>
+                    <h2>Seja Bem Vindo(a)!</h2>
                     <p>
-                        Expresse aqui seus pensamentos e
-                        opiniões
+                        Expresse aqui seus pensamentos e opiniões📝
                     </p>
                 </div>
  

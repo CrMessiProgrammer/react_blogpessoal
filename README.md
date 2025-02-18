@@ -82,6 +82,23 @@ A aplicação estará disponível no enderço: `http://localhost:5173`
 
 ---
 
+## 5. Estrutura do Projeto
+
+```plaintext
+src/
+│
+├── components/       # Componentes reutilizáveis
+├── contexts/         # Gerenciamento de estado global (ex: autenticação)
+├── models/           # Estrutura de dados da aplicação-
+├── pages/            # Páginas da aplicação
+├── services/         # Integração com a API (requisições HTTP)
+├── utils/            # Funções auxiliares (alerts)
+└── App.tsx           # Componente principal da aplicação
+```
+
+---
+
+## 6. Autenticação e Validação de Token JWT
 
 ### Fluxo de Autenticação
 

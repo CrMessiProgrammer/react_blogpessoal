@@ -8,7 +8,7 @@ function Footer() {
 			<div className="flex justify-center text-white bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900">
 				<div className="container flex flex-col items-center py-4">
 					<p className="text-xl font-bold">
-						Blog Pessoal Generation | Copyright:{' '}
+						Blog Pessoal Carlos - Generation | Copyright:{' '}
 						{data}
 					</p>
 					<p className="text-lg">

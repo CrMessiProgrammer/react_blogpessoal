@@ -5,6 +5,7 @@ import Navbar from './components/navbar/Navbar'
 import Home from './pages/home/Home'
 import Login from './pages/login/Login'
 import Cadastro from './pages/cadastro/Cadastro'
+import { AuthProvider } from './contexts/AuthContext'
 
 // Single Page Application (SPA - Aplicativo de Página Única)
 // Componente Funcional: Uma função JS ou TS que retornará uma aplicação renderizada no seu navegador.
@@ -15,19 +16,21 @@ function App() {
 	return (
 		// Obrigatório fazer um <></> vazio, ou uma <div></div>
 		<>
-			<BrowserRouter>
-			{/* Componentes 'Navbar', 'Home', 'Footer' e 'Login' */}
-				<Navbar />
-				<div className="min-h-[80vh]">
-					<Routes>
-						<Route path="/" element={<Login />} />
-						<Route path="/home" element={<Home />} />
-						<Route path="/cadastro" element={<Cadastro />} />
-						<Route path="/login" element={<Login />} />
-					</Routes>
-				</div>
-				<Footer />
-			</BrowserRouter>
+			<AuthProvider>	{/* Qualquer componente React */}
+				<BrowserRouter>
+					{/* Componentes 'Navbar', 'Home', 'Footer' e 'Login' */}
+					<Navbar />
+					<div className="min-h-[80vh]">
+						<Routes>
+							<Route path="/" element={<Login />} />
+							<Route path="/home" element={<Home />} />
+							<Route path="/cadastro" element={<Cadastro />} />
+							<Route path="/login" element={<Login />} />
+						</Routes>
+					</div>
+					<Footer />
+				</BrowserRouter>
+			</AuthProvider>
 		</>
   	)
 }

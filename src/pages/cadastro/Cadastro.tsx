@@ -56,7 +56,6 @@ function Cadastro() {
       try {
         await cadastrarUsuario('/usuarios/cadastrar', usuario, setUsuario)
         alert('Usuário Cadastrado com Sucesso!')
-
       } catch (error) {
         alert('Erro ao Cadastrar o Usuário!')
       }
@@ -143,7 +142,8 @@ function Cadastro() {
             />
           </div>
           <div className="flex justify-around w-full gap-8">
-            <button
+            {/* Reseta e volta para a tela de Login */}
+            <button type='reset'
               className='rounded text-white bg-red-400 hover:bg-red-700 w-1/2 py-2'
               onClick={retornar}
             >

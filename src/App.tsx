@@ -6,6 +6,7 @@ import Home from './pages/home/Home'
 import Login from './pages/login/Login'
 import Cadastro from './pages/cadastro/Cadastro'
 import { AuthProvider } from './contexts/AuthContext'
+import ListaTemas from './components/temas/listatemas/ListaTemas'
 
 // Single Page Application (SPA - Aplicativo de Página Única)
 // Componente Funcional: Uma função JS ou TS que retornará uma aplicação renderizada no seu navegador.
@@ -26,6 +27,7 @@ function App() {
 							<Route path="/home" element={<Home />} />
 							<Route path="/cadastro" element={<Cadastro />} />
 							<Route path="/login" element={<Login />} />
+							<Route path="/temas" element={<ListaTemas />} />
 						</Routes>
 					</div>
 					<Footer />

@@ -8,6 +8,7 @@ import Cadastro from './pages/cadastro/Cadastro'
 import { AuthProvider } from './contexts/AuthContext'
 import ListaTemas from './components/temas/listatemas/ListaTemas'
 import FormTema from './components/temas/formtema/FormTema'
+import DeletarTema from './components/temas/deletartema/DeletarTema'
 
 // Single Page Application (SPA - Aplicativo de Página Única)
 // Componente Funcional: Uma função JS ou TS que retornará uma aplicação renderizada no seu navegador.
@@ -31,6 +32,7 @@ function App() {
 							<Route path="/temas" element={<ListaTemas />} />
 							<Route path="/cadastrartema" element={<FormTema />} />
 							<Route path="/editartema/:id" element={<FormTema />} />
+							<Route path="/deletartema/:id" element={<DeletarTema />} />
 							
 						</Routes>
 					</div>

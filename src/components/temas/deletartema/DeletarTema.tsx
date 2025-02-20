@@ -25,7 +25,7 @@ function DeletarTema() {
         try {
             // Autorização no 'headers' via Axios igual fazíamos no Insomnia
             await buscar(`/temas/${id}`, setTema, {
-                headers: { Authorization: token }
+                headers: { Authorization: token },
             })
         
         } catch (error: any) {
@@ -54,7 +54,7 @@ function DeletarTema() {
 
         try {
             await deletar(`/temas/${id}`, {
-                headers: { Authorization: token }
+                headers: { Authorization: token },
             })
 
             alert('Tema foi apagado com sucesso!')

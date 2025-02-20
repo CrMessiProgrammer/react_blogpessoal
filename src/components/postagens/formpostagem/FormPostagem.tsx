@@ -65,7 +65,7 @@ function FormPostagem() {
     }, [token])
 
     useEffect(() => {
-        buscarTemas()
+        buscarTemas()   // Carrega e recarrega as tela com todos os temas disponíveis
 
         if (id !== undefined) {
             buscarPostagemPorId(id)

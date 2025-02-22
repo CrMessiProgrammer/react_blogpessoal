@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import Usuario from '../../models/Usuario'
 import { atualizarDadosUsuario } from '../../services/Service'
@@ -13,8 +13,6 @@ function EditarPerfil() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const [confirmarSenha, setConfirmarSenha] = useState<string>("")
-
-  const { id } = useParams<{ id: string }>()
 
   const [usuario, setUsuario] = useState<Usuario>({
     id: 0,
@@ -55,12 +53,13 @@ function EditarPerfil() {
       setIsLoading(true) // Carregar a animação do 'loading'
 
       try {
-        await atualizarDadosUsuario(`editarperfil/${id}`, usuario, setUsuario, {
+        await atualizarDadosUsuario(`usuarios/atualizar`, usuario, setUsuario, {
                     headers: {
-                      nome: '',
-                      usuario: '',
-                      senha: '',
-                      foto: ''
+                      id: usuario.id,
+                      nome: usuario.nome,
+                      usuario: usuario.usuario,
+                      senha: usuario.senha,
+                      foto: usuario.foto
                     },
                 })
         alert('Usuário Atualizado com Sucesso!')
@@ -88,7 +87,7 @@ function EditarPerfil() {
           className='flex justify-center items-center flex-col w-2/3 gap-3'
           onSubmit={atualizarUsuario} // Fará o envio
         >
-          <h2 className='text-slate-900 text-5xl'>Cadastrar</h2>
+          <h2 className='text-slate-900 text-5xl'>Editando Perfil🖋️</h2>
           <div className="flex flex-col w-full">
             <label htmlFor="nome">Nome</label>
             <input
@@ -173,7 +172,7 @@ function EditarPerfil() {
                   width="24"
                   visible={true}/>
                   :
-                  <span>Cadastrar</span>
+                  <span>Salvar</span>
                   }
             </button>
           </div>

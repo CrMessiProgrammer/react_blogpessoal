@@ -13,6 +13,7 @@ import ListaPostagens from './components/postagens/listapostagens/ListaPostagens
 import FormPostagem from './components/postagens/formpostagem/FormPostagem'
 import DeletarPostagem from './components/postagens/deletarpostagem/DeletarPostagem'
 import Perfil from './pages/perfil/Perfil'
+import EditarPerfil from './pages/editarperfil/EditarPerfil'
 
 // Single Page Application (SPA - Aplicativo de Página Única)
 // Componente Funcional: Uma função JS ou TS que retornará uma aplicação renderizada no seu navegador.
@@ -42,6 +43,7 @@ function App() {
 							<Route path="/editarpostagem/:id" element={<FormPostagem />} />
 							<Route path="/deletarpostagem/:id" element={<DeletarPostagem />} />
 							<Route path="/perfil" element={<Perfil />} />
+							<Route path="/editarperfil/:id" element={<EditarPerfil />} />
 						</Routes>
 					</div>
 					<Footer />

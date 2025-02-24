@@ -92,7 +92,7 @@ src/
 ├── models/           # Estrutura de dados da aplicação-
 ├── pages/            # Páginas da aplicação
 ├── services/         # Integração com a API (requisições HTTP)
-├── utils/            # Funções auxiliares (alerts)
+├── utils/            # Funções auxiliares (ToastAlertas)
 └── App.tsx           # Componente principal da aplicação
 ```
 

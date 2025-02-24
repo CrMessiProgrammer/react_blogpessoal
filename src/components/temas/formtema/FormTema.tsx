@@ -4,6 +4,7 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import Tema from "../../../models/Tema";
 import { atualizar, buscar, cadastrar } from "../../../services/Service";
 import { RotatingLines } from "react-loader-spinner";
+import { ToastAlerta } from "../../../utils/ToastAlerta";
 
 function FormTema() {
 
@@ -39,7 +40,7 @@ function FormTema() {
 
     useEffect(() => {
         if (token === '') {
-            alert('Você precisa estar logado!')
+            ToastAlerta('Você precisa estar logado!', 'info')
             navigate('/')   // Envia de volta para a tela de login
         }
     }, [token])
@@ -68,12 +69,12 @@ function FormTema() {
                     headers: { Authorization: token },
                 })
  
-                alert("O Tema foi Atualizado com sucesso!")
+                ToastAlerta("O Tema foi Atualizado com sucesso!", 'sucesso')
             } catch (error: any) {
                 if (error.toString().includes("401")) {
                     handleLogout()
                 } else {
-                    alert("Erro ao atualizar o tema!")
+                    ToastAlerta("Erro ao atualizar o tema!", 'erro')
                 }
             }
         } else {
@@ -82,12 +83,12 @@ function FormTema() {
                     headers: { Authorization: token },
                 })
  
-                alert("O Tema foi Cadastrado com sucesso!")
+                ToastAlerta("O Tema foi Cadastrado com sucesso!", 'sucesso')
             } catch (error: any) {
                 if (error.toString().includes("401")) {
                     handleLogout()
                 } else {
-                    alert("Erro ao cadastrar o tema!")
+                    ToastAlerta("Erro ao cadastrar o tema!", 'erro')
                 }
             }
         }

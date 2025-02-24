@@ -14,6 +14,8 @@ import FormPostagem from './components/postagens/formpostagem/FormPostagem'
 import DeletarPostagem from './components/postagens/deletarpostagem/DeletarPostagem'
 import Perfil from './pages/perfil/Perfil'
 import EditarPerfil from './pages/editarperfil/EditarPerfil'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify'
 
 // Single Page Application (SPA - Aplicativo de Página Única)
 // Componente Funcional: Uma função JS ou TS que retornará uma aplicação renderizada no seu navegador.
@@ -25,6 +27,7 @@ function App() {
 		// Obrigatório fazer um <></> vazio, ou uma <div></div>
 		<>
 			<AuthProvider>	{/* Qualquer componente React */}
+			<ToastContainer />
 				<BrowserRouter>
 					{/* Componentes 'Navbar', 'Home', 'Footer' e 'Login' */}
 					<Navbar />

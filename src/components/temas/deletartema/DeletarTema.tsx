@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../../contexts/AuthContext"
 import { buscar, deletar } from "../../../services/Service"
 import { RotatingLines } from "react-loader-spinner"
+import { ToastAlerta } from "../../../utils/ToastAlerta"
 
 function DeletarTema() {
 
@@ -38,7 +39,7 @@ function DeletarTema() {
 
     useEffect(() => {
         if (token === '') {
-            alert('Você precisa estar logado!')
+            ToastAlerta('Você precisa estar logado!', 'info')
             navigate('/')   // Envia de volta para a tela de login
         }
     }, [token])
@@ -57,14 +58,14 @@ function DeletarTema() {
                 headers: { Authorization: token },
             })
 
-            alert('Tema foi apagado com sucesso!')
+            ToastAlerta('Tema foi apagado com sucesso!', 'sucesso')
 
         } catch (error: any) {
             // Erro '401' significa que o token é inválido ou que expirou
             if (error.toString().includes('401')) {
                 handleLogout()  // Zera o token
             }else{
-                alert('Erro ao excluir tema!')
+                ToastAlerta('Erro ao excluir tema!', 'erro')
             }
         }
 

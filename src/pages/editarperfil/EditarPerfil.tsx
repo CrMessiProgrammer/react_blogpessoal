@@ -4,6 +4,7 @@ import Usuario from '../../models/Usuario'
 import { atualizar, buscar } from '../../services/Service'
 import { RotatingLines } from 'react-loader-spinner'
 import { AuthContext } from '../../contexts/AuthContext'
+import { ToastAlerta } from '../../utils/ToastAlerta'
 
 function EditarPerfil() {
 
@@ -45,7 +46,7 @@ function EditarPerfil() {
 
   useEffect(() => {
     if (token === '') {
-      alert('Você precisa estar logado');
+      ToastAlerta('Você precisa estar logado', 'info');
       navigate('/');
     }
   }, [token])
@@ -91,14 +92,14 @@ function EditarPerfil() {
                       Authorization: token,
                     },
                 })
-        alert('Usuário Atualizado com Sucesso!')
+        ToastAlerta('Usuário Atualizado com Sucesso!', 'sucesso')
         sucesso()
       } catch (error) {
-        alert('Erro ao Atualizar o Usuário!')
+        ToastAlerta('Erro ao Atualizar o Usuário!', 'erro')
         retornar()
       }
     } else {
-      alert('Dados do Usuário inconsistentes! Verifique as informações e tente novamente.')
+      ToastAlerta('Dados do Usuário inconsistentes! Verifique as informações e tente novamente.', 'erro')
       setConfirmarSenha('') // Limpa a 'confirmarSenha' para o usuário digitar novamente
     }
 

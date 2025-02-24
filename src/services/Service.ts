@@ -15,11 +15,6 @@ export const cadastrarUsuario = async(url: string, dados: Object, setDados: Func
     setDados(resposta.data) // Atualiza o estado com os dados + o 'id'
 }
 
-export const atualizarDadosUsuario = async (url: string, dados: Object, setDados: Function, header: Object) => {
-    const resposta = await api.put(url, dados, header)
-    setDados(resposta.data)
-}
-
 export const login = async(url: string, dados: Object, setDados: Function) => {
     const resposta = await api.post(url, dados)
     setDados(resposta.data) // Atualiza o estado com os dados + o 'id'

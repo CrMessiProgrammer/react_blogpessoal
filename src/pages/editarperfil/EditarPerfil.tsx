@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router-dom'
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import { ChangeEvent, FormEvent, useContext, useEffect, useState } from 'react'
 import Usuario from '../../models/Usuario'
-import { atualizarDadosUsuario } from '../../services/Service'
+import { atualizar, buscar } from '../../services/Service'
 import { RotatingLines } from 'react-loader-spinner'
+import { AuthContext } from '../../contexts/AuthContext'
 
 function EditarPerfil() {
 
@@ -14,7 +15,13 @@ function EditarPerfil() {
 
   const [confirmarSenha, setConfirmarSenha] = useState<string>("")
 
-  const [usuario, setUsuario] = useState<Usuario>({
+  const { usuario, handleLogout } = useContext(AuthContext)
+
+  const token = usuario.token
+
+  const id: string = usuario.id.toString()
+
+  const [user, setUser] = useState<Usuario>({
     id: 0,
     nome: '',
     usuario: '',
@@ -22,20 +29,46 @@ function EditarPerfil() {
     foto: '',
   })
 
-  useEffect(() => {
-    if (usuario.id !== 0) {
-      retornar()      
+  async function buscarUsuarioPorId(id: string) {
+    try {
+      await buscar(`/usuarios/${id}`, setUser, {
+        headers: {
+          Authorization: token
+        },
+      })
+    } catch (error: any) {
+      if (error.toString().includes('403')) {
+        handleLogout()
+      }
     }
-  }, [usuario])
+  }
+
+  useEffect(() => {
+    if (token === '') {
+      alert('Você precisa estar logado');
+      navigate('/');
+    }
+  }, [token])
+
+  useEffect(() => {
+    if (id !== undefined) {
+      buscarUsuarioPorId(id)
+    }
+  }, [id])
 
   function retornar() {
-    navigate('/perfil')  // Rota para voltar para a tela de 'login'
+    navigate('/perfil')  // Rota para voltar para a tela de 'perfil'
+  }
+
+  function sucesso() {
+    handleLogout()
+    navigate('/') // Rota para voltar para a tela de 'login' pós editar perfil (p/ atualizar)
   }
 
   // Vai receber os 'onChange' dos input (irá guardar/atualizar os valores dentro do estado Usuario)
   function atualizarEstado(e: ChangeEvent<HTMLInputElement>){
-    setUsuario({
-      ...usuario, // '...' permanece os dados que já tem, e só altera os modificados
+    setUser({
+      ...user, // '...' permanece os dados que já tem, e só altera os modificados
       [e.target.name]: e.target.value // 'e' input que retornou o change, o 'target' direciona os dados para nome do input (nome, usuario, foto, etc...)
     })
   }
@@ -45,37 +78,34 @@ function EditarPerfil() {
   }
 
   async function atualizarUsuario(e: FormEvent<HTMLFormElement>) {
-    // Impedi que o formulário seja enviado assim que clicar no botão
+    // Impede que o formulário seja enviado assim que clicar no botão
     e.preventDefault()
 
-    if (confirmarSenha === usuario.senha && usuario.senha.length >= 8) {
+    if (confirmarSenha === user.senha && user.senha.length >= 8) {
 
       setIsLoading(true) // Carregar a animação do 'loading'
 
       try {
-        await atualizarDadosUsuario(`usuarios/atualizar`, usuario, setUsuario, {
+        await atualizar(`/usuarios/atualizar`, user, setUser, {
                     headers: {
-                      id: usuario.id,
-                      nome: usuario.nome,
-                      usuario: usuario.usuario,
-                      senha: usuario.senha,
-                      foto: usuario.foto
+                      Authorization: token,
                     },
                 })
         alert('Usuário Atualizado com Sucesso!')
+        sucesso()
       } catch (error) {
         alert('Erro ao Atualizar o Usuário!')
+        retornar()
       }
     } else {
       alert('Dados do Usuário inconsistentes! Verifique as informações e tente novamente.')
-      setUsuario({...usuario, senha: ''}) // Limpa a 'senha' para o usuário digitar novamente
       setConfirmarSenha('') // Limpa a 'confirmarSenha' para o usuário digitar novamente
     }
 
     setIsLoading(false)
   }
 
-  console.log(JSON.stringify(usuario))
+  console.log(JSON.stringify(user))
   console.log(confirmarSenha)
 
   return (
@@ -96,7 +126,7 @@ function EditarPerfil() {
               name="nome"
               placeholder="Nome"
               className="border-2 border-slate-700 rounded p-2"
-              value={usuario.nome} // chamar o nome exato que está descrito acima, nesse caso 'nome'
+              value={user.nome} // chamar o nome exato que está descrito, nesse caso 'nome'
               onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
           </div>
@@ -108,7 +138,7 @@ function EditarPerfil() {
               name="usuario"
               placeholder="Usuario"
               className="border-2 border-slate-700 rounded p-2"
-              value={usuario.usuario} // chamar o nome exato que está descrito acima, nesse caso 'usuario'
+              value={user.usuario} // chamar o nome exato que está descrito, nesse caso 'usuario'
               onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
           </div>
@@ -120,7 +150,7 @@ function EditarPerfil() {
               name="foto"
               placeholder="Foto"
               className="border-2 border-slate-700 rounded p-2"
-              value={usuario.foto}
+              value={user.foto}
               onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
           </div>
@@ -132,7 +162,7 @@ function EditarPerfil() {
               name="senha"
               placeholder="Senha"
               className="border-2 border-slate-700 rounded p-2"
-              value={usuario.senha}
+              value={user.senha}
               onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
           </div>

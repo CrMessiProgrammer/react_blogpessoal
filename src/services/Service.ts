@@ -4,7 +4,7 @@ import axios from "axios";
 
 // Estamos criando uma conexão do front end com o back end
 const api = axios.create({
-    baseURL: 'https://blogpessoal-bfqu.onrender.com/'
+    baseURL: import.meta.env.VITE_API_URL
 })
 
 // 'Object' significa que ele pode receber obetos de qualquer lugar

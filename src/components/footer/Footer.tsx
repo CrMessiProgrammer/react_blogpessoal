@@ -1,4 +1,4 @@
-import { LinkedinLogo, GithubLogo, EnvelopeSimple } from '@phosphor-icons/react'
+import { LinkedinLogo, GithubLogo, AddressBook, Globe } from '@phosphor-icons/react'
 import { ReactNode, useContext } from 'react'
 import { AuthContext } from '../../contexts/AuthContext'
 
@@ -31,7 +31,7 @@ function Footer() {
                             <GithubLogo size={48} weight='bold' />
                         </a>
                         <a href="https://crmessiprogrammer.github.io/portfolio_tjs06/" target="_blank">
-                            <EnvelopeSimple size={48} weight='bold' />
+                            <Globe size={48} weight='bold' />
                         </a>
                     </div>
 				</div>

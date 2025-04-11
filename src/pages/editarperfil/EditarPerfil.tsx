@@ -112,69 +112,69 @@ function EditarPerfil() {
   return (
     <>
       <div className="grid grid-cols-1 lg:grid-cols-2 h-screen 
-            place-items-center font-bold">
+            place-items-center font-bold bg-gradient-to-l from-black via-gray-600 to-white">
         <div className="fundoCadastro hidden lg:block"></div>
         <form
-          className='flex justify-center items-center flex-col w-2/3 gap-3'
+          className='flex justify-center items-center flex-col w-2/3 gap-3 bg-gray-800 p-10 rounded-xl shadow-xl'
           onSubmit={atualizarUsuario} // Fará o envio
         >
-          <h2 className='text-slate-900 text-5xl'>Editando Perfil🖋️</h2>
-          <div className="flex flex-col w-full">
+          <h2 className='text-white text-5xl'>Editar Perfil🖋️</h2>
+          <div className="flex flex-col w-full text-gray-300">
             <label htmlFor="nome">Nome</label>
             <input
               type="text"
               id="nome"
               name="nome"
               placeholder="Nome"
-              className="border-2 border-slate-700 rounded p-2"
+              className="border-2 border-gray-400 bg-gray-900 text-white rounded p-2"
               value={user.nome} // chamar o nome exato que está descrito, nesse caso 'nome'
               onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
           </div>
-          <div className="flex flex-col w-full">
+          <div className="flex flex-col w-full text-gray-300">
             <label htmlFor="usuario">Usuario</label>
             <input
               type="text"
               id="usuario"
               name="usuario"
               placeholder="Usuario"
-              className="border-2 border-slate-700 rounded p-2"
+              className="border-2 border-gray-400 bg-gray-900 text-white rounded p-2"
               value={user.usuario} // chamar o nome exato que está descrito, nesse caso 'usuario'
               onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
           </div>
-          <div className="flex flex-col w-full">
+          <div className="flex flex-col w-full text-gray-300">
             <label htmlFor="foto">Foto</label>
             <input
               type="text"
               id="foto"
               name="foto"
               placeholder="Foto"
-              className="border-2 border-slate-700 rounded p-2"
+              className="border-2 border-gray-400 bg-gray-900 text-white rounded p-2"
               value={user.foto}
               onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
           </div>
-          <div className="flex flex-col w-full">
+          <div className="flex flex-col w-full text-gray-300">
             <label htmlFor="senha">Senha</label>
             <input
               type="password"
               id="senha"
               name="senha"
               placeholder="Senha"
-              className="border-2 border-slate-700 rounded p-2"
+              className="border-2 border-gray-400 bg-gray-900 text-white rounded p-2"
               value={user.senha}
               onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
           </div>
-          <div className="flex flex-col w-full">
+          <div className="flex flex-col w-full text-gray-300">
             <label htmlFor="confirmarSenha">Confirmar Senha</label>
             <input
               type="password"
               id="confirmarSenha"
               name="confirmarSenha"
               placeholder="Confirmar Senha"
-              className="border-2 border-slate-700 rounded p-2"
+              className="border-2 border-gray-400 bg-gray-900 text-white rounded p-2"
               value={confirmarSenha}
               onChange={(e: ChangeEvent<HTMLInputElement>) => handleConfirmarSenha(e)}
             />
@@ -182,16 +182,14 @@ function EditarPerfil() {
           <div className="flex justify-around w-full gap-8">
             {/* Reseta e volta para a tela de Login */}
             <button type='reset'
-              className='rounded text-white bg-red-400 hover:bg-red-700 w-1/2 py-2'
+              className='rounded text-white bg-gray-600 hover:bg-gray-700 w-1/2 py-2'
               onClick={retornar}
             >
               Cancelar
             </button>
             <button 
                 type='submit'
-                className='rounded text-white bg-indigo-400 
-                           hover:bg-indigo-900 w-1/2 py-2
-                           flex justify-center' 
+                className='rounded text-white bg-gray-600 hover:bg-gray-700 w-1/2 py-2 flex justify-center' 
                 >
                   {/* Operador Ternário */}
                   {isLoading ?
